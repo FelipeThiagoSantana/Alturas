@@ -10,6 +10,7 @@ public class Main {
         String nome;
         int idade;
         double altura;
+        double menores = 0.0;
 
 
         Scanner scanner = new Scanner(System.in);
@@ -20,7 +21,8 @@ public class Main {
         Altura[] vet = new Altura[n];
 
         for(int i = 0; i < vet.length; i++){
-            System.out.println("Dados da "+i+"a pessoa:");
+            int contagem = i + 1;
+            System.out.println("Dados da "+ contagem +"ª pessoa:");
             System.out.print("Nome: ");
             nome = scanner.next();
 
@@ -32,12 +34,19 @@ public class Main {
 
             vet[i] = new Altura(nome, idade, altura);
         }
-        double soma = 0.0;
+        double somaAltura = 0.0;
+        double somaIdade = 0.0;
         for(int i = 0; i < vet.length; i++){
-            soma += vet[i].getAltura();
+            somaAltura += vet[i].getAltura();
+            somaIdade += vet[i].getIdade();
         }
-        double mediaAltura = soma / vet.length;
-        System.out.print("Media " + mediaAltura);
+        double mediaAltura = somaAltura / vet.length;
+        menores = somaIdade - somaIdade / vet.length;
+
+        System.out.print("Altura média: " + mediaAltura);
+        System.out.println(" ");
+        System.out.println("Porcetagem " +menores+ "%");
+
 
 
     }
