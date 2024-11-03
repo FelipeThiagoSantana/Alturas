@@ -54,8 +54,6 @@ public class Main {
         // Calcula o percentual de pessoas com menos de 16 anos
         double percentualMenores16 = ((double) contagemMenores16 / vet.length) * 100;
 
-
-
         // Exibe os resultados
         System.out.printf("Altura média: %.2f%n", mediaAltura);
         System.out.printf("Porcentagem de pessoas com menos de 16 anos: %.2f%%%n", percentualMenores16);
