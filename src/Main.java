@@ -4,29 +4,27 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
 
         String nome;
         int idade;
         double altura;
-        double menores = 0.0;
-
 
         Scanner scanner = new Scanner(System.in);
         Locale.setDefault(Locale.US);
 
-        System.out.println("Quantas pessoas serao digitadas?");
+        System.out.println("Quantas pessoas serão digitadas?");
         int n = scanner.nextInt();
         Altura[] vet = new Altura[n];
 
-        for(int i = 0; i < vet.length; i++){
+        // Entrada de dados
+        for (int i = 0; i < vet.length; i++) {
             int contagem = i + 1;
-            System.out.println("Dados da "+ contagem +"ª pessoa:");
+            System.out.println("Dados da " + contagem + "ª pessoa:");
             System.out.print("Nome: ");
             nome = scanner.next();
 
-            System.out.print("Idade:");
+            System.out.print("Idade: ");
             idade = scanner.nextInt();
 
             System.out.print("Altura: ");
@@ -34,20 +32,31 @@ public class Main {
 
             vet[i] = new Altura(nome, idade, altura);
         }
+
+        // Calcula a soma das alturas e conta as pessoas com menos de 16 anos
         double somaAltura = 0.0;
-        double somaIdade = 0.0;
-        for(int i = 0; i < vet.length; i++){
-            somaAltura += vet[i].getAltura();
-            somaIdade += vet[i].getIdade();
+        int contagemMenores16 = 0;
+        String nomeMenores = "";
+
+        for (int i = 0; i < vet.length; i++) {
+            somaAltura += vet[i].getAltura(); // Soma das alturasv
+
+            // Conta as pessoas com menos de 16 anos
+            if (vet[i].getIdade() < 16) {
+                contagemMenores16++;
+                nomeMenores = vet[i].getName();
+            }
         }
+
+        // Calcula a altura média
         double mediaAltura = somaAltura / vet.length;
-        menores = somaIdade - somaIdade / vet.length;
 
-        System.out.print("Altura média: " + mediaAltura);
-        System.out.println(" ");
-        System.out.println("Porcetagem " +menores+ "%");
+        // Calcula o percentual de pessoas com menos de 16 anos
+        double percentualMenores16 = ((double) contagemMenores16 / vet.length) * 100;
 
-
-
+        // Exibe os resultados
+        System.out.printf("Altura média: %.2f%n", mediaAltura);
+        System.out.printf("Porcentagem de pessoas com menos de 16 anos: %.2f%%%n", percentualMenores16);
+        System.out.println("Nome menores: " + nomeMenores);
     }
 }
